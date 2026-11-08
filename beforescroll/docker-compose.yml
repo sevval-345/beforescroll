@@ -1,0 +1,10 @@
+services:
+  web:                          # panel + canlı model API  ->  http://localhost:8000
+    build: .
+    ports: ["8000:8000"]
+    volumes: ["./output:/app/output"]
+  train:                        # sadece eğitim/ufuk taraması: docker compose --profile train run --rm train
+    build: .
+    command: ["main.py", "--sweep"]
+    profiles: ["train"]
+    volumes: ["./output:/app/output"]
