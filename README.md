@@ -1,42 +1,83 @@
-# BeforeScroll
+<div align="center">
 
-**BeforeScroll**, kullanıcının dijital kullanım alışkanlıklarını kendi geçmiş davranışlarıyla karşılaştırarak uzun veya riskli ekran oturumları başlamadan önce farkındalık oluşturmayı amaçlayan bir prototiptir. Uygulama; kullanım örüntülerini, günün saatini ve tamamlanmış sorumlulukları birlikte değerlendirir. Amacı telefonu tamamen bırakmayı sağlamak değil, kullanıcının odağını korumasına ve kullanımına bilinçli biçimde ara vermesine destek olmaktır.
+# 🌈 BeforeScroll
 
-> **Demo bilgisi:** Proje şu an gerçek telefon kullanım verilerini toplamaz. Model ve panel, uygulamanın içindeki kurallı sentetik verilerle çalışır. Sonuçlar ürün veya sağlık önerisi olarak değerlendirilmemelidir.
+### Ekrana dalmadan önce, kendine bir an ver.
 
-## Neler yapıyor?
+**BeforeScroll**, uzun veya riskli ekran oturumları başlamadan önce kişisel kullanım örüntülerini görünür kılmayı amaçlayan, makine öğrenmesi destekli bir farkındalık demosudur.
 
-- **Sentetik kullanım verisi üretir:** Farklı kullanıcılar ve günler için uygulama oturumları, kullanım süreleri, bildirimler, uygulama açılışları ve tetikleyici türleri oluşturur.
-- **Riskli oturumları tahmin eder:** Geçmiş oturumlar ve zaman bilgileriyle, belirlenen erken uyarı ufkunda riskli kullanım olasılığını hesaplar. Özellikler yalnızca karar anından önce tamamlanmış oturumları kullanacak şekilde hazırlanır.
-- **Kişisel ve sorumluluğa duyarlı eşikler uygular:** Bekleyen görevler varken sistem daha hassas, görevler tamamlandığında ise daha esnek çalışır.
-- **Etkileşimli bir gösterge paneli sunar:** Risk puanı ve uyarı geri sayımı; günlük kullanım eğilimi; haftalık riskli oturumlar; bildirim ve sıkılma kaynaklı kullanım dağılımı; görev listesi ve günlük check-in gösterilir.
-- **Basit bir rehber asistan içerir:** Önceden tanımlı sorulara kullanıcının simüle edilmiş örüntülerine göre yanıt verir; mola ve bildirimleri gruplama önerileri sunar.
-- **Model deneylerini destekler:** Veri seti ve özellikleri dışa aktarır, metrikleri ve özellik önemini hesaplar; istenirse farklı tahmin ufuklarını karşılaştırır.
+[✨ Özellikler](#-öne-çıkan-özellikler) · [🚀 Hızlı başlangıç](#-hızlı-başlangıç) · [🧠 Model deneyleri](#-model-deneyleri) · [🔌 API](#-api-uç-noktaları) · [🗂️ Proje yapısı](#️-proje-yapısı)
 
-## Kullanılan teknolojiler
+<br>
+
+![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-Web%20App-000000?style=for-the-badge&logo=flask&logoColor=white)
+![scikit--learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
+</div>
+
+> [!IMPORTANT]
+> **Bu proje bir demo ve farkındalık aracıdır.** Gerçek telefon kullanım verilerini toplamaz; model ve panel uygulama içinde üretilen kurallı sentetik verilerle çalışır. Gösterilen sonuçlar ürün, sağlık veya klinik tavsiye değildir.
+
+---
+
+## 📚 İçindekiler
+
+- [🌟 Proje hakkında](#-proje-hakkında)
+- [✨ Öne çıkan özellikler](#-öne-çıkan-özellikler)
+- [🧰 Teknoloji yığını](#-teknoloji-yığını)
+- [🚀 Hızlı başlangıç](#-hızlı-başlangıç)
+- [🧠 Model deneyleri](#-model-deneyleri)
+- [🐳 Docker ile çalıştırma](#-docker-ile-çalıştırma)
+- [🔌 API uç noktaları](#-api-uç-noktaları)
+- [🗂️ Proje yapısı](#️-proje-yapısı)
+- [⚠️ Sınırlar ve sorumlu kullanım](#️-sınırlar-ve-sorumlu-kullanım)
+
+## 🌟 Proje hakkında
+
+Ekranda ne kadar zaman geçirdiğimizi çoğu zaman oturum bittikten sonra fark ederiz. **BeforeScroll**, bu farkındalığı oturum başlamadan önce desteklemek için geçmiş kullanım örüntülerine bakan bir prototiptir.
+
+Uygulama sentetik oturumlar oluşturur, bu verilerden zamana duyarlı özellikler çıkarır ve belirlenen erken uyarı ufkunda riskli kullanım olasılığını tahmin eder. Sonuçlar etkileşimli bir gösterge panelinde sunulur.
+
+## ✨ Öne çıkan özellikler
+
+| Özellik | Açıklama |
+|---|---|
+| 🎲 **Sentetik kullanım verisi** | Farklı kullanıcı ve günler için oturum süresi, uygulama açılışı, bildirimler ve kullanım tetikleyicileri simüle edilir. |
+| 🔮 **Erken risk tahmini** | Geçmiş oturumlar ve zaman bilgileri kullanılarak seçilen uyarı ufkunda riskli kullanım olasılığı hesaplanır. Özellikler karar anından önceki bilgilerle sınırlıdır. |
+| 🎚️ **Uyarlanabilir eşikler** | Bekleyen görevler varken sistem daha hassas, görevler tamamlandığında ise daha esnek eşikler uygular. |
+| 📊 **Etkileşimli gösterge paneli** | Risk puanı, uyarı geri sayımı, günlük kullanım eğilimi, haftalık riskli oturumlar ve bildirim/sıkılma kaynaklı kullanım dağılımı görüntülenir. |
+| 💬 **Rehber asistan** | Önceden tanımlı sorulara simüle edilmiş kullanım örüntülerine göre yanıt verir; mola ve bildirimleri gruplama önerileri sunar. |
+| 🧪 **Model deneyleri** | Veri ve özellikleri dışa aktarabilir, değerlendirme metriklerini ve özellik önemini inceleyebilir, farklı tahmin ufuklarını karşılaştırabilirsiniz. |
+| 🌗 **Tema seçenekleri** | Mobil uyumlu arayüz açık, koyu ve otomatik tema seçenekleri sunar. |
+
+## 🧰 Teknoloji yığını
 
 ### Sunucu ve makine öğrenmesi
 
-- **Python 3.11** — veri simülasyonu, özellik üretimi ve modelleme.
-- **Flask** — gösterge panelini sunan web sunucusu ve JSON API.
-- **NumPy ve pandas** — sentetik verilerin ve zaman serilerinin hazırlanması.
-- **scikit-learn** — lojistik regresyon ve HistGradientBoosting sınıflandırıcıları, zaman bazlı eğitim/doğrulama/test ayrımı ve değerlendirme metrikleri.
+- **Python 3.11** — simülasyon, özellik üretimi ve modelleme
+- **Flask** — web sunucusu ve JSON API
+- **NumPy & pandas** — sentetik veri ve zaman serilerinin hazırlanması
+- **scikit-learn** — lojistik regresyon, HistGradientBoosting, zaman bazlı veri ayrımı ve değerlendirme metrikleri
 
-### Arayüz ve çalıştırma
+### Arayüz ve dağıtım
 
-- **HTML, CSS ve JavaScript** — ek bir frontend framework'ü olmadan oluşturulan, mobil uyumlu arayüz; açık/koyu/otomatik tema desteği.
-- **Docker ve Docker Compose** — uygulamayı ve isteğe bağlı model deneylerini konteyner içinde çalıştırma.
+- **HTML, CSS ve JavaScript** — ek bir frontend framework'ü gerektirmeyen istemci arayüzü
+- **Docker & Docker Compose** — uygulamayı ve isteğe bağlı model deneylerini konteyner içinde çalıştırma
 
-## Başlarken
+## 🚀 Hızlı başlangıç
 
-Komutları, uygulama dosyalarının bulunduğu `beforescroll/` dizininden çalıştırın:
+> Komutları uygulama dosyalarının bulunduğu `beforescroll/` dizininden çalıştırın.
+
+### 1. Depoyu alın ve sanal ortam oluşturun
 
 ```bash
 cd beforescroll
 python -m venv .venv
 ```
 
-Sanal ortamı etkinleştirin:
+### 2. Sanal ortamı etkinleştirin
 
 ```bash
 # macOS / Linux
@@ -46,18 +87,18 @@ source .venv/bin/activate
 .venv\Scripts\Activate.ps1
 ```
 
-Bağımlılıkları kurup web uygulamasını başlatın:
+### 3. Bağımlılıkları kurup uygulamayı başlatın
 
 ```bash
 pip install -r requirements.txt
 python app.py
 ```
 
-Ardından tarayıcıdan [http://localhost:8000](http://localhost:8000) adresini açın. İlk başlangıçta sentetik veri üretilir ve model eğitilir; bu işlem birkaç saniye sürebilir.
+Tarayıcınızda [http://localhost:8000](http://localhost:8000) adresini açın. İlk başlangıçta sentetik veri üretilir ve model eğitilir; bu işlem birkaç saniye sürebilir.
 
-## Model deneyleri
+## 🧠 Model deneyleri
 
-Varsayılan ayarlarla sentetik veri üretmek, özellikleri oluşturmak, modelleri eğitip değerlendirmek için:
+Varsayılan ayarlarla sentetik veri üretmek, özellikleri oluşturmak ve modelleri eğitip değerlendirmek için:
 
 ```bash
 python main.py
@@ -69,17 +110,28 @@ python main.py
 python main.py --sweep
 ```
 
-Başlıca parametreler `--users`, `--days`, `--horizon`, `--seed` ve `--out` seçenekleriyle değiştirilebilir. Örneğin:
+Deney ayarlarını komut satırı seçenekleriyle değiştirebilirsiniz:
 
 ```bash
 python main.py --users 60 --days 35 --horizon 10 --out output
 ```
 
-Çıktılar varsayılan olarak `output/` dizinine yazılır. Bunlara oturum verileri (`sessions.csv`), özellikler (`features_h10.csv`) ve ufuk taraması çalıştırıldığında `horizon_sweep.csv` dahildir.
+Kullanılabilen başlıca parametreler:
 
-## Docker ile çalıştırma
+| Parametre | İşlev |
+|---|---|
+| `--users` | Simüle edilecek kullanıcı sayısı |
+| `--days` | Simülasyonun kapsayacağı gün sayısı |
+| `--horizon` | Erken uyarı ufku (dakika) |
+| `--seed` | Tekrarlanabilir deneyler için rastgelelik tohumu |
+| `--out` | Üretilen çıktıların kaydedileceği dizin |
+| `--sweep` | Birden fazla uyarı ufkunu karşılaştırır |
 
-Web uygulamasını başlatmak için `beforescroll/` dizininde:
+Çıktılar varsayılan olarak `output/` dizinine yazılır. Üretilen dosyalar arasında oturum verileri (`sessions.csv`) ve özellik tablosu (ör. `features_h10.csv`) bulunur.
+
+## 🐳 Docker ile çalıştırma
+
+Web uygulamasını konteyner içinde başlatmak için:
 
 ```bash
 docker compose up --build web
@@ -91,7 +143,7 @@ Model ufuk taramasını tek seferlik çalıştırmak için:
 docker compose --profile train run --rm train
 ```
 
-## API uç noktaları
+## 🔌 API uç noktaları
 
 Flask sunucusu aşağıdaki uç noktaları sağlar:
 
@@ -103,7 +155,7 @@ Flask sunucusu aşağıdaki uç noktaları sağlar:
 | `POST` | `/api/checkin` | Günlük check-in yanıtını kaydeder. |
 | `POST` | `/api/ask` | Asistana önceden tanımlı bir soru gönderir. |
 
-## Proje yapısı
+## 🗂️ Proje yapısı
 
 ```text
 beforescroll/
@@ -121,3 +173,17 @@ beforescroll/
 ├── Dockerfile
 └── docker-compose.yml
 ```
+
+## ⚠️ Sınırlar ve sorumlu kullanım
+
+- BeforeScroll **gerçek cihaz kullanımını izlemez**; veriler sentetik olarak üretilir.
+- Tahminler simülasyon ve model deneyleri içindir; gerçek kişilerin davranışları hakkında güvenilir sonuç garantisi vermez.
+- Paneldeki öneriler genel farkındalık amaçlıdır ve profesyonel sağlık desteğinin yerine geçmez.
+
+---
+
+<div align="center">
+
+**BeforeScroll — kaydırmadan önce bir an dur, neye ihtiyacın olduğunu fark et.** 🌿
+
+</div>
